@@ -1,0 +1,17 @@
+{% extends "main/layout.html" %}
+
+{% block title %}Видалити контакт{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h1 class="h3">Видалити контакт</h1>
+        <p>Ви впевнені, що хочете видалити <strong>{{ contact }}</strong>?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">Видалити</button>
+            <a class="btn btn-secondary" href="{% url 'contact_list' %}">Скасувати</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

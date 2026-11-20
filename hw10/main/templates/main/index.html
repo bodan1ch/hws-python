@@ -1,0 +1,14 @@
+{% extends "main/layout.html" %}
+
+{% block title %}Головна — HW10{% endblock %}
+
+{% block content %}
+<h1>Домашня робота 10</h1>
+<p class="lead">Форми в Django.</p>
+<div class="list-group">
+    <a class="list-group-item list-group-item-action" href="{% url 'login' %}">1. Форма входу</a>
+    <a class="list-group-item list-group-item-action" href="{% url 'numbers' %}">2. Мінімум, максимум або середнє</a>
+    <a class="list-group-item list-group-item-action" href="{% url 'registration' %}">3. Реєстрація в магазині</a>
+    <a class="list-group-item list-group-item-action" href="{% url 'programmer_day' %}">4. День програміста</a>
+</div>
+{% endblock %}

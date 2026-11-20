@@ -1,0 +1,19 @@
+{% extends "main/layout.html" %}
+
+{% block title %}День програміста{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h1 class="h3 mb-4">День програміста</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Знайти дату</button>
+        </form>
+        {% if result %}
+        <p class="alert alert-success mt-4 mb-0">Результат: <strong>{{ result }}</strong></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

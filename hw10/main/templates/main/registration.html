@@ -1,0 +1,32 @@
+{% extends "main/layout.html" %}
+
+{% block title %}Реєстрація{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h1 class="h3 mb-4">Реєстрація покупця</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Зареєструватися</button>
+        </form>
+
+        {% if registration %}
+        <section class="alert alert-success mt-4">
+            <h2 class="h5">Введені дані</h2>
+            <p><strong>Ім’я:</strong> {{ registration.first_name }}</p>
+            <p><strong>Прізвище:</strong> {{ registration.last_name }}</p>
+            <p><strong>Вік:</strong> {{ registration.age }}</p>
+            <p><strong>Email:</strong> {{ registration.email }}</p>
+            <p><strong>Стать:</strong> {{ registration.gender }}</p>
+            <p><strong>Адреса для доставки:</strong> {{ registration.address }}</p>
+            <p class="mb-0">
+                <strong>Підписка на новини:</strong>
+                {% if registration.subscribe %}Так{% else %}Ні{% endif %}
+            </p>
+        </section>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

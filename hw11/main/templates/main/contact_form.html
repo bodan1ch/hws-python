@@ -1,0 +1,21 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+{% if contact %}Змінити контакт{% else %}Додати контакт{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h1 class="h3 mb-4">
+            {% if contact %}Змінити контакт{% else %}Додати контакт{% endif %}
+        </h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Зберегти</button>
+            <a class="btn btn-secondary" href="{% url 'contact_list' %}">Скасувати</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

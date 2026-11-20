@@ -1,0 +1,60 @@
+{% extends "main/layout.html" %}
+
+{% block title %}Усі контакти{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-4">Телефонна книга</h1>
+
+<form class="row g-2 mb-4" method="get">
+    <div class="col-md-8">
+        <input
+            class="form-control"
+            type="search"
+            name="q"
+            value="{{ query }}"
+            placeholder="Пошук за ім’ям або прізвищем"
+        >
+    </div>
+    <div class="col-md-auto">
+        <button class="btn btn-primary" type="submit">Знайти</button>
+    </div>
+</form>
+
+{% if contacts %}
+<div class="table-responsive">
+    <table class="table table-striped table-bordered align-middle bg-white">
+        <thead>
+            <tr>
+                <th>Ім’я</th>
+                <th>Прізвище</th>
+                <th>Email</th>
+                <th>Телефон</th>
+                <th>Примітки</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+            <tr>
+                <td>{{ contact.first_name }}</td>
+                <td>{{ contact.last_name }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.phone }}</td>
+                <td>{{ contact.notes|default:"-" }}</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" href="{% url 'contact_edit' contact.id %}">
+                        Змінити
+                    </a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'contact_delete' contact.id %}">
+                        Видалити
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p class="alert alert-info">Контактів не знайдено.</p>
+{% endif %}
+{% endblock %}
